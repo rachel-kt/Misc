@@ -1,0 +1,5 @@
+for f in *.gtf
+ do
+ A="$(cut -d'_' -f1 <<< $f)"
+ grep 'FPKM' $f | cut -f9 | sed -r 's/.*gene_id "([^"]*).*FPKM "([^"]*).*/\1\t\2/g' | sed '1i#gene_id\tFPKM' > "$A"_fpkm.csv
+done
